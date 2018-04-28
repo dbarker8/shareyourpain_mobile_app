@@ -3,13 +3,14 @@ import {
     View,
     ImageBackground,
     TouchableOpacity,
-    Image
+    Image,
+    SafeAreaView
 } from 'react-native'
 import { Text, Button, Icon } from 'native-base';
 import { connect } from 'react-redux';
 
 
-class ShareScreen extends React.Component {
+class ProfileScreen extends React.Component {
 
     constructor(props) {
         super(props)
@@ -18,9 +19,6 @@ class ShareScreen extends React.Component {
     }
 
 
-    handleSharePress(x){
-        this.props.navigation.navigate('EnterStoryScreen', {storyType: x} );    
-    }
 
     setChatInput(value) { this.setState({ chatInput: value }) };
 
@@ -29,19 +27,11 @@ class ShareScreen extends React.Component {
         return (
             <View style={styles.container} >
                 <ImageBackground source={require('../../assets/img/chalkboard.jpg')} style={styles.imageBackground} >
+                    <SafeAreaView style={styles.container} >
 
-                <TouchableOpacity style={styles.shareButton} onPress={() => this.handleSharePress('pain')}>
-                    <Image source={require('../../assets/img/broken_heart.png')} style={styles.buttonIcon} />
-                    <Text style={styles.shareText}>Share Pain</Text>
-                </TouchableOpacity>
+                        <Text style={{color: '#f7f7f7', margin:30, fontSize: 30}}>Profile Screen</Text>
 
-                <View style={{ height: 50 }}></View> {/*seperate buttons */}
-                
-                <TouchableOpacity style={styles.shareButton} onPress={() => this.handleSharePress('hope')}>
-                    <Image source={require('../../assets/img/heart.png')} style={styles.buttonIcon} />
-                    <Text style={styles.shareText}>Share Hope</Text>
-                </TouchableOpacity>
-
+                    </SafeAreaView>
                 </ImageBackground>
             </View>
         )
@@ -53,7 +43,7 @@ const mapStateToProps = state => ({
     loggedInUser: state.loggedInUser
 })
 
-export default connect(mapStateToProps)(ShareScreen);
+export default connect(mapStateToProps)(ProfileScreen);
 
 const styles = {
     container: {
@@ -71,9 +61,10 @@ const styles = {
         justifyContent: 'center',
         height: '25%',
         width: '80%',
-        borderRadius:20,
+        borderRadius: 20,
         borderColor: '#f7f7f7',
-        borderWidth:1
+        borderWidth: 1,
+        margin: 10
     },
     shareText: {
         fontSize: 28,

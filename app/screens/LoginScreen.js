@@ -15,7 +15,8 @@ class LoginScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            loading: false
+            loading: false,
+            renderLogin: true //false renders "register new user", true renders login
         }
     }
 
@@ -30,41 +31,76 @@ class LoginScreen extends React.Component {
             <Spinner color='white' /> :
             <Text style={{fontWeight: 'bold', fontSize: 20}}>Log In</Text> ;
 
+        let middle = this.state.renderLogin ? 
+
+            <Form style={styles.form}>
+            <Text key='underLogoText' style={styles.underLogoText}>
+                Login to NoFace
+            </Text>
+            <Item floatingLabel style={styles.inputItem}>
+                <Label style={{color: 'white'}}>Email</Label>
+                <Input
+                    keyboardType={"email-address"}
+                    selectionColor={"white"}
+                    autoCorrect={false}
+                    autoCapitalize='none' 
+                    style={{color:'white'}}
+                    onChangeText={x => this.setState({email:x})} 
+                />
+            </Item>
+            <Item floatingLabel style={styles.inputItem}>
+                <Label style={{color: 'white'}}>Password</Label>
+                <Input
+                    selectionColor={"white"}
+                    autoCorrect={false}
+                    autoCapitalize='none' 
+                    style={{color:'white'}}
+                    onChangeText={x => this.setState({password:x})} 
+                    secureTextEntry={true} 
+                />
+            </Item>
+            <Button block light style={{marginTop:20}} onPress={this.handleSubmitPress.bind(this)}>
+                {buttonContent}
+            </Button>
+            </Form>
+            :
+            <Form style={styles.form}>
+            <Text key='underLogoText' style={styles.underLogoText}>
+                Register a new account!
+            </Text>
+            <Item floatingLabel style={styles.inputItem}>
+                <Label style={{color: 'white'}}>Email</Label>
+                <Input
+                    keyboardType={"email-address"}
+                    selectionColor={"white"}
+                    autoCorrect={false}
+                    autoCapitalize='none' 
+                    style={{color:'white'}}
+                    onChangeText={x => this.setState({email:x})} 
+                />
+            </Item>
+            <Item floatingLabel style={styles.inputItem}>
+                <Label style={{color: 'white'}}>Password</Label>
+                <Input
+                    selectionColor={"white"}
+                    autoCorrect={false}
+                    autoCapitalize='none' 
+                    style={{color:'white'}}
+                    onChangeText={x => this.setState({password:x})} 
+                    secureTextEntry={true} 
+                />
+            </Item>
+            <Button block light style={{marginTop:20}} onPress={this.handleSubmitPress.bind(this)}>
+                {buttonContent}
+            </Button>
+            </Form>
+
         return (
             // <View style={styles.container} >
                 <ImageBackground source={require('../../assets/img/chalkboard.jpg')} style={styles.imageBackground} >
                     <KeyboardAvoidingView  behavior='padding' keyboardVerticalOffset={0} >
                         <Image source={require('../../assets/img/logo.png')} style={styles.logo} />
-                        <Form style={styles.form}>
-                        <Text key='underLogoText' style={styles.underLogoText}>
-                            Login to NoFace
-                        </Text>
-                        <Item floatingLabel style={styles.inputItem}>
-                            <Label style={{color: 'white'}}>Email</Label>
-                            <Input
-                                keyboardType={"email-address"}
-                                selectionColor={"white"}
-                                autoCorrect={false}
-                                autoCapitalize='none' 
-                                style={{color:'white'}}
-                                onChangeText={x => this.setState({email:x})} 
-                            />
-                        </Item>
-                        <Item floatingLabel style={styles.inputItem}>
-                            <Label style={{color: 'white'}}>Password</Label>
-                            <Input
-                                selectionColor={"white"}
-                                autoCorrect={false}
-                                autoCapitalize='none' 
-                                style={{color:'white'}}
-                                onChangeText={x => this.setState({password:x})} 
-                                secureTextEntry={true} 
-                            />
-                        </Item>
-                        <Button block light style={{marginTop:20}} onPress={this.handleSubmitPress.bind(this)}>
-                            {buttonContent}
-                        </Button>
-                        </Form>
+                        {middle}
                     </KeyboardAvoidingView>
                 </ImageBackground>
             // </View>
