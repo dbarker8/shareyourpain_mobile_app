@@ -10,9 +10,24 @@ class Story extends React.PureComponent {
     }
 
     render() {
+        let imageSource = this.props.item.type=='hope' ? 
+            this.props.heart : this.props.brokenHeart ;
+        
+        let customStyle = JSON.parse(this.props.item.style);
+
         return (
-            <TouchableOpacity style={styles.mainContainer} onPress={this.handleStoryPress.bind(this)}>
-                <Text style={styles.bodyText}>
+            <TouchableOpacity 
+                style={[
+                    styles.mainContainer, {
+                        transform: [{ rotate: customStyle.tiltAngle + 'deg' }], 
+                        marginVertical: this.props.topMargin ? customStyle.randomMargin + this.props.topMargin : customStyle.randomMargin,
+                        width: customStyle.randomWidth+'%'
+                } ]} 
+                onPress={this.handleStoryPress.bind(this)}
+            >
+            <View style={{width: customStyle.leftBoxWidth+'%'}}></View>
+            <Image source={imageSource} style={styles.heart} />
+                <Text style={[styles.bodyText, {fontSize: customStyle.randomFontSize} ]}>
                 {this.props.item.body}
                 </Text>
             </TouchableOpacity>
@@ -24,13 +39,17 @@ export default Story
 
 const styles = {
     mainContainer: {
-        width: '100%',
-        minHeight: 100,
-        marginVertical: 15
+        flexDirection: 'row',
+        // width: '100%',
+        minHeight: 100
     },
     bodyText: {
         color: '#f7f7f7',
-        fontSize: 18,
         marginHorizontal: 10
+    },
+    heart: {
+        margin:5,
+        height:20,
+        width:20
     }
 }

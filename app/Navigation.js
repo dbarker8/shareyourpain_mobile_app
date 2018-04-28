@@ -80,7 +80,7 @@ const StackNav = StackNavigator({
     },
 }, { 
         navigationOptions: {
-        headerTitle: 'NoFace',
+        headerTitle: 'Share Your Pain',
         headerStyle: {
           backgroundColor: '#424242',
         },

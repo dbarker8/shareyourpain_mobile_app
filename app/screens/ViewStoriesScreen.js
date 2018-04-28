@@ -3,36 +3,24 @@ import {
     View,
     ImageBackground,
     VirtualizedList,
-    SafeAreaView
+    SafeAreaView,
+    FlatList
 } from 'react-native'
 import { Text, Button, Icon } from 'native-base';
 import { connect } from 'react-redux';
 import Story from '../components/Story';
 
-const testStories = [
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },
-    { body: 'this is body text asdkjkj asjkasj dfajsdf aslsdidi dsi sihsdi sd f sdhj sdfjh sdiouw sdoi fo sd lsdlkflkjsd slslkdj fsdf' },    
-    
-]
+let heart = require('../../assets/img/heart.png');
+let brokenHeart = require('../../assets/img/broken_heart.png');
+
+
 
 class ViewStoriesScreen extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            stories: testStories
+            stories: []
         }
     }
 
@@ -53,15 +41,20 @@ class ViewStoriesScreen extends React.Component {
             }
         }).catch((error) => {
           console.log(error);
-            alert("Error getting stories. Please check your internet connection or try again");          
+            // alert("Error getting stories. Please check your internet connection or try again");     
+            alert(error)     
         });
     }
 
 
     renderStory(rowData){
+
         return(
             <Story
                 item={rowData.item}
+                heart={heart}
+                brokenHeart={brokenHeart}
+                topMargin={rowData.index==0 ? 40 : 0}
             />
         );
     }
@@ -107,11 +100,11 @@ const styles = {
     },
     imageBackground: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'center',
     },
     mainList: {
-        flex:1,
+        // flex:1,
         marginTop:20,
         width: '100%',
         height: '100%',

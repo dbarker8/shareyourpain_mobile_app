@@ -43,6 +43,16 @@ class EnterStoryScreen extends React.Component {
     handleSendPress(){
         Keyboard.dismiss();
         this.setState({loading: true});
+
+        let randomWidth = Math.floor(Math.random() * Math.floor(20)) + 70;
+        let storyStyle = JSON.stringify({
+            tiltAngle: Math.floor(Math.random() * Math.floor(20))-10, //int between -10 and 10
+            randomMargin: Math.floor(Math.random() * Math.floor(20))+40, //int between 5 and 25
+            randomWidth: randomWidth,
+            randomFontSize: Math.floor(Math.random() * Math.floor(6)) + 16,
+            leftBoxWidth: Math.floor(Math.random() * Math.floor(100-randomWidth)), //move so they arent aligned on left always
+        });
+
         fetch('https://shareyourpain.herokuapp.com/enterstory', {
           method: 'POST',
           headers: {
@@ -53,6 +63,8 @@ class EnterStoryScreen extends React.Component {
             storyBody: this.state.storyText,
             color: this.state.selectedColor, 
             font: this.state.selectedFont,
+            type: this.props.navigation.state.params.storyType,
+            style: storyStyle
           }),
         }).then(result => {
           if(result.status==200){ //if request went OK, tell the user

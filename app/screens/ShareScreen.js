@@ -72,8 +72,8 @@ const styles = {
         height: '25%',
         width: '80%',
         borderRadius:20,
-        borderColor: '#f7f7f7',
-        borderWidth:1
+        // borderColor: '#f7f7f7',
+        // borderWidth:1
     },
     shareText: {
         fontSize: 28,
