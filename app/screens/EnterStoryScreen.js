@@ -81,7 +81,7 @@ class EnterStoryScreen extends React.Component {
             })
           }
           this.setState({ loading: false });          
-          this.props.navigation.goBack();
+          this.props.navigation.navigate('ViewStoriesScreen');
 
         }).catch((error) => {
           console.log(error);
@@ -103,7 +103,7 @@ class EnterStoryScreen extends React.Component {
                         keyboardDismissMode='on-drag'
                         keyboardShouldPersistTaps='never'
                     >
-            
+                        <Text style={styles.topText}>Don't be shy...</Text>
                         <View style={styles.storyTextWrapper}>
                             <TextInput
                                 style={styles.storyText}
@@ -117,7 +117,7 @@ class EnterStoryScreen extends React.Component {
                         </View>
                         {/* <Form> */}
                         <Picker
-                          style={{width:'100%', height:80}}
+                          style={styles.picker}
                           iosHeader="Select one"
                           placeholder="Select font..."
                           mode="dropdown"
@@ -130,10 +130,6 @@ class EnterStoryScreen extends React.Component {
                         </Picker>
                         {/* </Form> */}
 
-                        <ColorPicker
-                          onColorSelected={color => alert(`Color selected: ${color}`)}
-                          style={styles.colorPicker}
-                        />
 
                         <Button  style={styles.sendButton} bordered block light onPress={() => this.handleSendPress(this.props.navigation.state.params.storyType)}>
                             {buttonContent}
@@ -186,5 +182,16 @@ const styles = {
     },
     sendButton: {
         marginTop:10
+    },
+    picker: {
+        flex:1,
+        // height: 60,
+        margin:15,
+        backgroundColor: 'rgba(255,255,255,.1)'
+    },
+    topText: {
+        alignSelf: 'center',
+        color: '#f7f7f7',
+        fontSize: 18
     }
 }
