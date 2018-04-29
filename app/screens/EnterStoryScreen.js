@@ -8,10 +8,9 @@ import {
     TextInput,
     Dimensions,
     ScrollView,
-    Spinner,
     Keyboard
 } from 'react-native'
-import { Text, Button, Icon, Picker, Form, Toast } from 'native-base';
+import { Text, Button, Icon, Picker, Form, Toast, Spinner } from 'native-base';
 import { connect } from 'react-redux';
 import { ColorPicker } from 'react-native-color-picker'
 
@@ -41,6 +40,7 @@ class EnterStoryScreen extends React.Component {
     }
 
     handleSendPress(){
+        if(this.state.loading){ return };
         Keyboard.dismiss();
         this.setState({loading: true});
 
@@ -91,8 +91,7 @@ class EnterStoryScreen extends React.Component {
     setChatInput(value) { this.setState({ chatInput: value }) };
 
     render() {
-        let buttonContent =  <Text>Share</Text> ;
-        // this.state.loading ? <Spinner size='small' color='white' /> :
+        let buttonContent = this.state.loading ? <Spinner size='small' color='white' /> : <Text>Share</Text>;
 
 
         return (
@@ -103,7 +102,7 @@ class EnterStoryScreen extends React.Component {
                         keyboardDismissMode='on-drag'
                         keyboardShouldPersistTaps='never'
                     >
-                        <Text style={styles.topText}>Don't be shy...</Text>
+                        <Text style={styles.topText}>Don't pause, dont hesitate. Share something...</Text>
                         <View style={styles.storyTextWrapper}>
                             <TextInput
                                 style={styles.storyText}
@@ -116,7 +115,7 @@ class EnterStoryScreen extends React.Component {
                             />
                         </View>
                         {/* <Form> */}
-                        <Picker
+                        {/* <Picker
                           style={styles.picker}
                           iosHeader="Select one"
                           placeholder="Select font..."
@@ -127,7 +126,7 @@ class EnterStoryScreen extends React.Component {
                           <Picker.Item label="Font 1" value="key0" />
                           <Picker.Item label="Font 2" value="key1" />
                           <Picker.Item label="a different font" value="key2" />
-                        </Picker>
+                        </Picker> */}
                         {/* </Form> */}
 
 
@@ -164,7 +163,10 @@ const styles = {
         color: '#f7f7f7',
         justifyContent: 'flex-start',
         padding: 8,
-        flex: 1
+        flex: 1,
+        fontFamily: 'Nunito',
+        fontSize: 18
+        
     },
     storyTextWrapper: {
         borderWidth: 1,
@@ -192,6 +194,10 @@ const styles = {
     topText: {
         alignSelf: 'center',
         color: '#f7f7f7',
-        fontSize: 18
+        fontSize: 24,
+        margin:20,
+        fontFamily: 'Nunito',
+        textAlign: 'center'
+        
     }
 }

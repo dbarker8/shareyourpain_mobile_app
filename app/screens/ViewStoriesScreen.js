@@ -6,7 +6,7 @@ import {
     SafeAreaView,
     FlatList
 } from 'react-native'
-import { Text, Button, Icon } from 'native-base';
+import { Text, Button, Icon, Spinner } from 'native-base';
 import { connect } from 'react-redux';
 import Story from '../components/Story';
 
@@ -20,7 +20,8 @@ class ViewStoriesScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            stories: []
+            stories: [],
+            loading: true
         }
     }
 
@@ -34,6 +35,7 @@ class ViewStoriesScreen extends React.Component {
           },
         }).then(result => result.json())
         .then(result => {
+            this.setState({loading: false});
             if(result){
                 this.setState({stories: result.stories})
             }else{
@@ -62,10 +64,12 @@ class ViewStoriesScreen extends React.Component {
     _keyExtractor = (item, index) => index.toString();
 
     render() {
+        let spinner = this.state.loading ? <Spinner style={{marginTop: 30}} color='white' /> : null ;
 
         return (
             <ImageBackground source={require('../../assets/img/chalkboard.jpg')} style={styles.imageBackground} >
                 <SafeAreaView style={styles.container} >
+                    {spinner}
 
                         <VirtualizedList
                             initialNumToRender={20}

@@ -32,11 +32,9 @@ class ShareScreen extends React.Component {
 
                 <TouchableOpacity style={styles.shareButton} onPress={() => this.handleSharePress('pain')}>
                     <Image source={require('../../assets/img/broken_heart.png')} style={styles.buttonIcon} />
-                    <Text style={styles.shareText}>Share Pain</Text>
+                    <Text style={styles.shareText}>Share Your Pain</Text>
                 </TouchableOpacity>
 
-                <View style={{ height: 50 }}></View> {/*seperate buttons */}
-                
                 <TouchableOpacity style={styles.shareButton} onPress={() => this.handleSharePress('hope')}>
                     <Image source={require('../../assets/img/heart.png')} style={styles.buttonIcon} />
                     <Text style={styles.shareText}>Share Hope</Text>
@@ -69,18 +67,20 @@ const styles = {
     shareButton: {
         alignItems: 'center',
         justifyContent: 'center',
-        height: '25%',
+        height: '40%',
         width: '80%',
         borderRadius:20,
         // borderColor: '#f7f7f7',
         // borderWidth:1
     },
     shareText: {
-        fontSize: 28,
-        color: '#f7f7f7'
+        fontSize: 34,
+        color: '#f7f7f7',
+        fontFamily: 'Nunito'
+        
     },
     buttonIcon: {
-        height: 50,
-        width: 50
+        height: 80,
+        width: 80
     }
 }

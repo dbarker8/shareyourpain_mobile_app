@@ -4,7 +4,8 @@ import {
     ImageBackground,
     TouchableOpacity,
     Image,
-    SafeAreaView
+    SafeAreaView,
+    Linking
 } from 'react-native'
 import { Button, Text, Item, Label, Input, List, ListItem, Icon, Right, Left, Body, Separator, Switch, Picker } from 'native-base';
 import { connect } from 'react-redux';
@@ -19,7 +20,7 @@ class SettingsScreen extends React.Component {
     }
 
     handleLogoutPress(){
-        alret('logout pressed')
+        alert('logout pressed')
     }
 
     setChatInput(value) { this.setState({ chatInput: value }) };
@@ -33,7 +34,7 @@ class SettingsScreen extends React.Component {
 
                         <List style={styles.list}>
 
-                            <ListItem button={true} onPress={() => alert('pressed about')} >
+                            <ListItem button={true} onPress={() => Linking.openURL('https://www.shareyourpain.me')} >
                                 <Body>
                                     <Text style={{color: '#f5f5f5'}}>About</Text>
                                 </Body>
@@ -42,14 +43,23 @@ class SettingsScreen extends React.Component {
                                 </Right>
                             </ListItem>
 
-                            <ListItem button={true} onPress={this.handleLogoutPress.bind(this)} >
+                            <ListItem button={true} onPress={() => Linking.openURL('https://www.shareyourpain.me')} >
+                                <Body>
+                                    <Text style={{color: '#f5f5f5'}}>Contact Us</Text>
+                                </Body>
+                                <Right>
+                                    <Icon name="arrow-forward" />
+                                </Right>
+                            </ListItem>
+
+                            {/* <ListItem button={true} onPress={this.handleLogoutPress.bind(this)} >
                                 <Body>
                                     <Text style={{color: '#f5f5f5'}}>Log Out</Text>
                                 </Body>
                                 <Right>
                                     <Icon name="arrow-forward" />
                                 </Right>
-                            </ListItem>
+                            </ListItem> */}
 
 
                             {/* <Separator bordered>

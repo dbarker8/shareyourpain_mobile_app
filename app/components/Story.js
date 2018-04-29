@@ -45,7 +45,8 @@ const styles = {
     },
     bodyText: {
         color: '#f7f7f7',
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        fontFamily: 'Nunito'
     },
     heart: {
         margin:5,

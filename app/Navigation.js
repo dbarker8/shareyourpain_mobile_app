@@ -39,19 +39,19 @@ const DrawerNav = DrawerNavigator({
         }
     },
 
-    JournalScreen: {
-        screen: JournalScreen,
-        navigationOptions: {
-            drawerLabel: 'Journal'
-        }
-    },
+    // JournalScreen: {
+    //     screen: JournalScreen,
+    //     navigationOptions: {
+    //         drawerLabel: 'Journal'
+    //     }
+    // },
 
-    ProfileScreen: {
-        screen: ProfileScreen,
-        navigationOptions: {
-            drawerLabel: 'Profile'
-        }
-    },
+    // ProfileScreen: {
+    //     screen: ProfileScreen,
+    //     navigationOptions: {
+    //         drawerLabel: 'Profile'
+    //     }
+    // },
     SettingsScreen: {
         screen: SettingsScreen,
         navigationOptions: {
