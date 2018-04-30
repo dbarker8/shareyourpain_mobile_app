@@ -7,7 +7,7 @@
           "image": "./assets/img/splash.png"
     },
     "name": "Share Your Pain",
-    "icon": "./assets/img/.png",
+    "icon": "./assets/img/shareyourpain_logo.png",
     "version": "1.0.0",
     "slug": "shareyourpain",
     "ios": {

@@ -47,7 +47,7 @@ class EnterStoryScreen extends React.Component {
         let randomWidth = Math.floor(Math.random() * Math.floor(20)) + 70;
         let storyStyle = JSON.stringify({
             tiltAngle: Math.floor(Math.random() * Math.floor(20))-10, //int between -10 and 10
-            randomMargin: Math.floor(Math.random() * Math.floor(20))+40, //int between 5 and 25
+            randomMargin: Math.floor(Math.random() * Math.floor(20))+30, //int between 5 and 25
             randomWidth: randomWidth,
             randomFontSize: Math.floor(Math.random() * Math.floor(6)) + 16,
             leftBoxWidth: Math.floor(Math.random() * Math.floor(100-randomWidth)), //move so they arent aligned on left always

@@ -6,7 +6,7 @@ class Story extends React.PureComponent {
   
 
     handleStoryPress(){
-        alert('story pressed')
+        // alert('story pressed')
     }
 
     render() {
